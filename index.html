@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Khang Yêu Huy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:"Times New Roman";
+    transition:background 1.5s;
+}
+body.day{background:radial-gradient(circle at top,#ffd6e7,#f7a8c7);}
+body.night{background:radial-gradient(circle at top,#12081f,#000);}
+
+.main{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===== NHỊP TIM VIỀN ===== */
+@keyframes heartBorder{
+    0%{box-shadow:0 0 8px rgba(255,105,180,.4);}
+    15%{box-shadow:0 0 18px rgba(255,105,180,1),0 0 40px rgba(255,105,180,.9);}
+    40%{box-shadow:0 0 10px rgba(255,105,180,.5);}
+    60%{box-shadow:0 0 22px rgba(255,105,180,1),0 0 55px rgba(255,105,180,.9);}
+    100%{box-shadow:0 0 8px rgba(255,105,180,.4);}
+}
+
+/* ===== ZODIAC ===== */
+.zodiac-couple{
+    position:absolute;
+    left:40px;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    gap:28px;
+    z-index:5;
+}
+.zodiac-card{
+    text-align:center;
+    padding:18px 20px;
+    border-radius:26px;
+    backdrop-filter:blur(6px);
+    animation:floatZodiac 4s ease-in-out infinite,heartBorder 1.2s infinite;
+}
+body.day .zodiac-card{background:#fff;border:2px solid #c2185b;}
+body.night .zodiac-card{background:rgba(20,10,40,.9);border:2px solid #ffb74d;}
+
+.zodiac-icon{
+    width:90px;height:90px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    margin:auto;
+    color:white;
+}
+.pisces{background:radial-gradient(circle,#9be7ff,#1e88e5);}
+.taurus{background:radial-gradient(circle,#ffd180,#c62828);}
+.zodiac-name{margin-top:10px;font-size:20px;font-weight:bold;color:#ad1457;}
+.zodiac-date{
+    margin-top:8px;
+    font-size:17px;
+    font-weight:bold;
+    padding:6px 14px;
+    border-radius:14px;
+}
+body.day .zodiac-date{background:#f8bbd0;color:#880e4f;}
+body.night .zodiac-date{background:#ffcc80;color:#4e342e;}
+
+/* ===== HEART ===== */
+.heart-zone{position:relative;width:260px;height:260px;z-index:6;}
+.heart{
+    position:absolute;
+    inset:0;
+    transform:rotate(-45deg);
+    background:#ff4d6d;
+    animation:beat 1.2s infinite,heartBorder 1.2s infinite;
+}
+.heart::before,.heart::after{
+    content:"";
+    position:absolute;
+    width:260px;height:260px;
+    border-radius:50%;
+    background:inherit;
+}
+.heart::before{top:-130px;}
+.heart::after{left:130px;}
+.heart-text{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    font-size:34px;
+    font-weight:bold;
+    text-align:center;
+    color:white;
+    text-shadow:0 0 8px #fff,0 0 25px hotpink;
+    z-index:7;
+}
+
+/* ===== TIMER ===== */
+.timer-box{
+    position:absolute;
+    right:40px;
+    padding:26px 36px;
+    border-radius:28px;
+    font-size:28px;
+    text-align:center;
+    font-weight:bold;
+    animation:heartBorder 1.2s infinite;
+}
+body.day .timer-box{background:#ad1457;color:#fff;border:2px solid #fff;}
+body.night .timer-box{background:#ffcc80;color:#4e342e;border:2px solid #4e342e;}
+
+/* ===== ANIM ===== */
+@keyframes beat{
+    0%{transform:rotate(-45deg) scale(1);}
+    20%{transform:rotate(-45deg) scale(1.12);}
+    40%{transform:rotate(-45deg) scale(1);}
+    60%{transform:rotate(-45deg) scale(1.08);}
+    100%{transform:rotate(-45deg) scale(1);}
+}
+@keyframes floatZodiac{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+/* ===== HIỆU ỨNG THEO MÙA ===== */
+.effect{
+    position:absolute;
+    pointer-events:none;
+    z-index:2;
+    opacity:.95;
+    animation:fall linear forwards;
+}
+@keyframes fall{
+    to{
+        transform:translate(var(--x),110vh) rotate(var(--r));
+        opacity:0;
+    }
+}
+
+/* Hoa tình yêu */
+.flower{
+    font-size:24px;
+    text-shadow:0 0 10px rgba(255,105,180,.9);
+}
+
+/* Lá + gió */
+.leaf{
+    font-size:26px;
+    text-shadow:0 0 10px rgba(255,180,100,.9);
+}
+
+/* ❄ TUYẾT TO – TRẮNG – GLOW RÕ */
+.snowflake{
+    font-size:40px;
+    color:white;
+    text-shadow:
+        0 0 6px #fff,
+        0 0 14px rgba(220,240,255,1),
+        0 0 30px rgba(200,220,255,1);
+}
+</style>
+</head>
+
+<body class="day">
+
+<div class="main">
+
+<div class="zodiac-couple">
+    <div class="zodiac-card">
+        <div class="zodiac-icon pisces">♓</div>
+        <div class="zodiac-name">Song Ngư</div>
+        <div class="zodiac-date">28-02-2010</div>
+    </div>
+    <div class="zodiac-card">
+        <div class="zodiac-icon taurus">♉</div>
+        <div class="zodiac-name">Kim Ngưu</div>
+        <div class="zodiac-date">15-05-2007</div>
+    </div>
+</div>
+
+<div class="heart-zone">
+    <div class="heart"></div>
+    <div class="heart-text">Khang<br>❤️<br>Huy</div>
+</div>
+
+<div class="timer-box">
+    💗 Đã bên nhau 💗<br>
+    <span id="timer"></span>
+</div>
+
+</div>
+
+<script>
+/* ===== TIMER ===== */
+const start=new Date("2026-01-05");
+function update(){
+    const days=Math.floor((new Date()-start)/86400000);
+    timer.innerText=days+" ngày";
+}
+update();setInterval(update,60000);
+
+/* ===== AUTO DAY NIGHT ===== */
+function autoMode(){
+    const h=new Date().getHours();
+    document.body.className=(h>=18||h<6)?"night":"day";
+}
+autoMode();setInterval(autoMode,60000);
+
+/* ===== SEASON EFFECT (ĐÃ SỬA ĐÚNG YÊU CẦU) ===== */
+const flowers=["🌸","🌷","🌹","💮","🌺","💐"];
+const leaves=["🍁","🍂","🍃"];
+const snowflakes=["❄","❅","❆"];
+
+function seasonEffect(){
+    const m=new Date().getMonth()+1;
+    let el=document.createElement("div");
+
+    if(m>=1 && m<=6){             // HOA: THÁNG 1–6
+        el.className="effect flower";
+        el.innerText=flowers[Math.floor(Math.random()*flowers.length)];
+    }
+    else if(m>=7 && m<=9){        // LÁ + GIÓ: THÁNG 7–9
+        el.className="effect leaf";
+        el.innerText=leaves[Math.floor(Math.random()*leaves.length)];
+    }
+    else{                         // TUYẾT: THÁNG 10–12
+        el.className="effect snowflake";
+        el.innerText=snowflakes[Math.floor(Math.random()*snowflakes.length)];
+    }
+
+    el.style.left=Math.random()*100+"vw";
+    el.style.top="-40px";
+    el.style.animationDuration=(7+Math.random()*6)+"s";
+    el.style.setProperty("--x",(Math.random()*240-120)+"px");
+    el.style.setProperty("--r",(Math.random()*360)+"deg");
+
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),16000);
+}
+setInterval(seasonEffect,420);
+</script>
+
+</body>
+</html>
